@@ -33,13 +33,13 @@ public class Filter1 implements Filter {
 		
 		String pass = req.getParameter("pass");
 		
-		if(pass.length()>5)
+		if(pass.length()>2)
 		{
 			chain.doFilter(request, response);
 		}
 		else
 		{
-		     response.getWriter().print("Password's length must be more than 5 words");
+		     response.getWriter().print("Password's length must be more than 2 words");
 		}
 		
 		

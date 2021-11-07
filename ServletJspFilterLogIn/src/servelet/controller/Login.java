@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import servlet.dao.LogInDao;
+
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -22,8 +24,11 @@ public class Login extends HttpServlet {
 		  String uname = request.getParameter("uname");
 		  String pass = request.getParameter("pass");
 		  
+		  LogInDao dao = new LogInDao();
 		  
-		  if(uname.equals("Hiren"))
+
+		  try {
+		  if(dao.check(uname, pass))
 		  {
 			  response.sendRedirect("welcome.jsp");
 			  HttpSession session = request.getSession();
@@ -32,6 +37,13 @@ public class Login extends HttpServlet {
 		  else
 		  {
 			  response.sendRedirect("login.jsp");
+		  }
+		  
+		  }
+		  catch(Exception e)
+		  {
+			  System.out.println("smtng wrng with the servelet");
+			  
 		  }
 		
 	}
